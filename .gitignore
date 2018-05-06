@@ -1,0 +1,17 @@
+/.idea
+/target
+*.iml
+out/
+*.jar
+*.h5
+*.jpg
+*.mp4
+*.pyc
+*.csv
+*.txt
+*.jpeg
+*.png
+*.gz
+*.dat
+*.localhost
+*.json
