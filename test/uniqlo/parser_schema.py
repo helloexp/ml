@@ -4,8 +4,8 @@ import json
 import xlrd
 
 merge_schema=[
-    # {"dw_member":["dw_tmall_head","tmall_head"]},
-    {"dw_product_category":["dw_product","product"]},
+    # {"dw_01_member":["dw_31_tmall_head","tmall_head"]},
+    # {"dw_02_product_category":["dw_02_product","product"]},
     # {"product":["dw_tmall_detail","tmall_detail_product"]},
     # {"tmall_head":["tmall_detail_product","tmall_detail"]}
     # {"dw_member":["dw_tmall_o2o_head","member_tmall_o2o_head"]},
@@ -13,14 +13,16 @@ merge_schema=[
     # {"product":["dw_tmall_o2o_detail","product_tmall_o2o_detail"]},
     # {"tmall_o2o_head":["product_tmall_o2o_detail","tmall_o2o_detail"]},
 
-    {"dw_store":["dw_epay_payment","store_epay_payment"]},
-    {"dw_member":["store_epay_payment","epay_payment"]},
+    # {"dw_store":["dw_epay_payment","store_epay_payment"]},
+    # {"dw_member":["store_epay_payment","epay_payment"]},
 
-    {"product":["dw_pos_detail","product_pos_detail"]},
-    {"product_pos_detail":["epay_payment","pos_detail"]}
+    # {"product":["dw_15_pos_detail","product_pos_detail"]},
+    # {"product_pos_detail":["dw_12_epay_payment","dw_15_pos_detail"]}
+
+    {"dw_01_member":["dw_81_ux_hotline","ux_hotline"]}
 ]
 
-excel_path = "/Users/tong/Desktop/uniqlo/02.DW数据结构设计_v0.14.xlsx"
+excel_path = "/Users/tong/Desktop/hypers/uniqlo/02.DW数据结构设计_v1.25.xlsx"
 
 excel = xlrd.open_workbook(excel_path)
 
@@ -77,7 +79,7 @@ for sheet in sheets:
 
     schema_map = {"channel": sheet, "fileType": "PARQUERT"}
 
-    if (sheet == "dw_member"):
+    if (sheet == "dw_01_member"):
         gen = True
 
     if (gen):

@@ -47,4 +47,3 @@ def generate_shingles(k,line):
 
     return res
 
-

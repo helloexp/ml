@@ -1,15 +1,37 @@
+import  numpy as np
+from sklearn import datasets
+from sklearn.pipeline import Pipeline
+from sklearn.svm import LinearSVC
+from sklearn.preprocessing import StandardScaler
 
-from sklearn import svm
 
+def svc():
+
+    iris = datasets.load_iris()
+
+    X = iris["data"][:, (2, 3)]
+    y= (iris["target"]== 2).astype(np.float64)
+
+    svm_clf = Pipeline([
+        ("scaler", StandardScaler()),
+        ("linear_svc", LinearSVC(C=1, loss="hinge")),
+    ])
+
+    svm_clf.fit(X, y)
+
+    predict = svm_clf.predict([[5.5, 1.7]])
+
+    params = svm_clf.get_params()
+
+    print(predict)
+    print(params)
 
 if __name__ == '__main__':
 
-    X=[[0,0],[1,1]]
-    Y=[0,1]
-    cls=svm.SVC()
-    cls.fit(X,Y)
+    svc()
 
-    print cls
 
-    print cls.predict([0.49,0.49])
-    print cls.predict([0.51,0.51])
+
+
+
+
