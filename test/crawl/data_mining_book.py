@@ -3,14 +3,16 @@ import os
 import PyPDF2
 import urllib3
 
+uri = "http://mml-book.github.io/book/chapter%s.pdf"
+base_file = "./chapter%s.pdf"
 
-uri = "http://infolab.stanford.edu/~ullman/mmds/ch%s.pdf"
-base_file = "./data_mining_ch%s.pdf"
 
 def craw():
     http = urllib3.PoolManager()
 
     for i in range(1, 13):
+        if (i < 10):
+            i = "0" + str(i)
         file_name = base_file % str(i)
         file_pdf = open(file_name, "wb+")
         crawl_uri = uri % str(i)
@@ -22,11 +24,9 @@ def craw():
         file_pdf.close()
 
 
-
-
-
 def get_all_pdf_files(param):
-    return list(filter(lambda f:f.endswith("pdf"),param))
+    return list(filter(lambda f: f.endswith("pdf"), param))
+
 
 def main():
     all_pdfs = reversed(get_all_pdf_files(os.listdir('./')))
@@ -34,10 +34,14 @@ def main():
     if not all_pdfs:
         raise SystemExit('No pdf file found!')
 
-    dst_pdf=PyPDF2.PdfFileWriter()
+    dst_pdf = PyPDF2.PdfFileWriter()
 
-    page=0
+    page = 0
     for i in range(1, 13):
+
+        if (i < 10):
+            i = "0" + str(i)
+
         f = base_file % str(i)
 
         reader = PyPDF2.PdfFileReader(f)
@@ -50,12 +54,12 @@ def main():
 
         page = page + pages
 
+    file_io = open("./merge_pdf.pdf", 'wb')
+    dst_pdf.write(file_io)
 
-    dst_pdf.write(open("merge_pdf.pdf", 'wb'))
-
+    file_io.close()
 
 
 if __name__ == '__main__':
-
     # craw()
     main()

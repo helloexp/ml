@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 
 df = pd.read_csv("./resource/2.csv")
 
+
 X = df.iloc[:, :1].values
 Y = df.iloc[:, 1].values
 
@@ -31,4 +32,10 @@ plt.show()
 plt.scatter(X_test , Y_test, color = 'black')
 plt.plot(X_test,regression.predict(X_test),color="yellow")
 plt.show()
+
+
+
+
+
+
 

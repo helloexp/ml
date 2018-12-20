@@ -3,6 +3,8 @@ import json
 
 import xlrd
 
+
+excel_path = "/Users/tong/Desktop/hypers/uniqlo/23.DW数据结构设计_v2.0.3.xlsx"
 merge_schema=[
     # {"dw_01_member":["dw_31_tmall_head","tmall_head"]},
     # {"dw_02_product_category":["dw_02_product","product"]},
@@ -19,10 +21,21 @@ merge_schema=[
     # {"product":["dw_15_pos_detail","product_pos_detail"]},
     # {"product_pos_detail":["dw_12_epay_payment","dw_15_pos_detail"]}
 
-    {"dw_01_member":["dw_81_ux_hotline","ux_hotline"]}
-]
 
-excel_path = "/Users/tong/Desktop/hypers/uniqlo/02.DW数据结构设计_v1.25.xlsx"
+    {"dw_02_product":["dw_02_product_category","product"]},
+    {"dw_01_member":["dw_11_fr_epay_head","fr_epay_member"]},
+    {"fr_epay_member":["dw_04_store","fr_epay_member_store"]},
+    {"dw_13_fr_epay_pay_detail":["dw_04_store","fr_epay_member_store"]},
+
+
+
+    # {"dw_12_fr_epay_plu_detail":["product","fr_epay_plu_detail_product"]},
+    # {"fr_epay_plu_detail_product":["fr_epay_member_store","fr_epay_plu_detail"]},
+    # {"dw_14_fr_epay_pay_detail_trace":["dw_13_fr_epay_pay_detail","fr_detail"]},
+    {"fr_detail":["fr_epay_member_store","fr_epay_detail"]},
+
+
+]
 
 excel = xlrd.open_workbook(excel_path)
 
